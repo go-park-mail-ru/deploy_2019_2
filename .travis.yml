@@ -7,6 +7,7 @@ script:
 - ssh-keyscan -H 95.163.212.32 >> ~/.ssh/known_hosts
 - chmod 400 $HOME/.ssh/deploy-2019-2-mGznqKVh.pem
 - docker build -t dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT .
+- docker login --username dmitrydorofeev --password $docker_password
 - ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 'sudo docker stop beepteamru && sudo docker pull dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT && sudo docker run -p 8080:8080 -d dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT'
 before_install:
 - openssl aes-256-cbc -K $encrypted_c66004758dd4_key -iv $encrypted_c66004758dd4_iv
