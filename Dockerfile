@@ -1,5 +1,5 @@
 FROM alpine
 
-COPY ./bin /bin
+COPY ./bin /app
 
-CMD [ "/bin/app" ]
+CMD [ "/app/app" ]
