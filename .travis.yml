@@ -9,7 +9,7 @@ script:
 - docker build -t dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT .
 - docker login --username dmitrydorofeev --password $docker_password
 - docker push dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT
-- ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 "sudo docker stop beepteamru && sudo docker pull dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT && sudo docker run -p 8080:8080 -d dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT"
+- ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 "sudo docker rm $(sudo docker ps -a -q) && sudo docker pull dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT && sudo docker run -p 8080:8080 --name beepteamru -d dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT"
 before_install:
 - openssl aes-256-cbc -K $encrypted_c66004758dd4_key -iv $encrypted_c66004758dd4_iv
   -in deploy-2019-2-mGznqKVh.pem.enc -out $HOME/.ssh/deploy-2019-2-mGznqKVh.pem
