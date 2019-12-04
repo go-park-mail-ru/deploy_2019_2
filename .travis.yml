@@ -10,5 +10,5 @@ script:
 - ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 '/home/ubuntu/beepteam-server/app &'
 before_install:
 - openssl aes-256-cbc -K $encrypted_c66004758dd4_key -iv $encrypted_c66004758dd4_iv
-  -in deploy-2019-2-mGznqKVh.pem.enc -out ~\/Downloads/deploy-2019-2-mGznqKVh.pem
+  -in deploy-2019-2-mGznqKVh.pem.enc -out $HOME/Downloads/deploy-2019-2-mGznqKVh.pem
   -d
