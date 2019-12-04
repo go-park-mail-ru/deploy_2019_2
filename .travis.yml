@@ -2,7 +2,6 @@ language: go
 node_js:
 - 1.13
 script:
-- make
 - eval "$(ssh-agent -s)"
 - ssh-keyscan -H 95.163.212.32 >> ~/.ssh/known_hosts
 - chmod 400 $HOME/.ssh/deploy-2019-2-mGznqKVh.pem

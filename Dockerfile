@@ -1,5 +1,13 @@
+FROM golang:alpine AS build
+
+COPY . /src
+
+WORKDIR /src
+
+RUN make
+
 FROM alpine
 
-COPY ./bin /app
+COPY --from=build /src/bin /app
 
 CMD [ "/app/app" ]
