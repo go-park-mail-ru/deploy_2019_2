@@ -6,3 +6,6 @@ build:
 
 clean:
 	rm -rf ./bin
+
+docker:
+	docker build -t dmitrydorofeev/beepteam.ru:

@@ -6,8 +6,8 @@ script:
 - eval "$(ssh-agent -s)"
 - ssh-keyscan -H 95.163.212.32 >> ~/.ssh/known_hosts
 - chmod 400 $HOME/.ssh/deploy-2019-2-mGznqKVh.pem
-- scp -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem -r ./bin/* ubuntu@95.163.212.32:/home/ubuntu/beepteam-server
-- ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 '/home/ubuntu/beepteam-server/app &'
+- docker build -t dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT .
+- ssh -i $HOME/.ssh/deploy-2019-2-mGznqKVh.pem ubuntu@95.163.212.32 'docker stop beepteamru && docker pull dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT && docker run -p 8080:8080 -d dmitrydorofeev/beepteam.ru:$TRAVIS_COMMIT'
 before_install:
 - openssl aes-256-cbc -K $encrypted_c66004758dd4_key -iv $encrypted_c66004758dd4_iv
   -in deploy-2019-2-mGznqKVh.pem.enc -out $HOME/.ssh/deploy-2019-2-mGznqKVh.pem
