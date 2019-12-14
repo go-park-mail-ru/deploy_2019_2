@@ -11,7 +11,7 @@ func main() {
 
 		log.Println("log is here")
 
-		w.Write([]byte("goodbye"))
+		w.Write([]byte("guten morgen"))
 	})
 
 	http.ListenAndServe(":8080", nil)
